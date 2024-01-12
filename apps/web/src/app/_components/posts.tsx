@@ -77,7 +77,7 @@ export function CreatePostForm() {
             </FormItem>
           )}
         />
-        <Button long>Create</Button>
+        <Button long htmlType="submit">Create</Button>
       </form>
     </Form>
   );
