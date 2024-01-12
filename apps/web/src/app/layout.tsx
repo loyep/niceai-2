@@ -3,6 +3,7 @@ import { cache } from "react";
 import { headers } from "next/headers";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
+
 import "@arco-themes/react-niceai/css/arco.css";
 
 import { cn } from "@niceai/ui";
@@ -13,8 +14,9 @@ import { env } from "~/env";
 import { TRPCReactProvider } from "~/trpc/react";
 
 import "~/app/globals.css";
-import { SessionProvider } from "@niceai/auth/react";
+
 import { auth } from "@niceai/auth";
+import { SessionProvider } from "@niceai/auth/react";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -47,16 +49,20 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         )}
       >
         <SessionProvider session={session}>
-
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <TRPCReactProvider headersPromise={getHeaders()}>
-            {props.children}
-          </TRPCReactProvider>
-          <div className="absolute bottom-4 right-4">
-            <ThemeToggle />
-          </div>
-          <Toaster />
-        </ThemeProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            enableColorScheme={false}
+          >
+            <TRPCReactProvider headersPromise={getHeaders()}>
+              {props.children}
+            </TRPCReactProvider>
+            <div className="absolute bottom-4 right-4">
+              <ThemeToggle />
+            </div>
+            <Toaster />
+          </ThemeProvider>
         </SessionProvider>
       </body>
     </html>
