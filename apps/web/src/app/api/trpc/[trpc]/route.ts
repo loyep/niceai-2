@@ -1,6 +1,6 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 
-import { appRouter, createTRPCContext } from "@niceai/api";
+import { appRouter, createTRPCContext } from "@niceai/trpc";
 import { auth } from "@niceai/auth";
 
 // export const runtime = "edge";

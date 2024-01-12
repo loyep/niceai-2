@@ -1,16 +1,16 @@
-import { auth, signIn, signOut } from "@niceai/auth";
-import { Button } from "@niceai/ui/button";
+'use client';
 
-export async function AuthShowcase() {
-  const session = await auth();
+import { signIn, useSession } from "@niceai/auth/react";
+import { Button } from "@arco-design/web-react";
 
-  if (!session) {
+export function AuthShowcase() {
+  const session = useSession();
+
+  if (!session.data) {
     return (
       <form>
         <Button
-          size="lg"
-          formAction={async () => {
-            "use server";
+          onClick={async () => {
             await signIn("github");
           }}
         >
@@ -23,16 +23,15 @@ export async function AuthShowcase() {
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <p className="text-center text-2xl">
-        {session && <span>Logged in as {session.user.name}</span>}
+        {session.data && <span>Logged in as {session.data.user.name}</span>}
       </p>
 
       <form>
         <Button
-          size="lg"
-          formAction={async () => {
-            "use server";
-            await signOut();
-          }}
+          // formAction={async () => {
+          //   "use server";
+          //   await signOut();
+          // }}
         >
           Sign out
         </Button>

@@ -5,7 +5,8 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./env": "./env.js"
+    "./env": "./env.js",
+    "./react": "./src/react.ts"
   },
   "license": "MIT",
   "scripts": {

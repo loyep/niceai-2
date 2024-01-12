@@ -1,7 +1,7 @@
 import { cache } from "react";
 import { headers } from "next/headers";
 
-import { createCaller, createTRPCContext } from "@niceai/api";
+import { createCaller, createTRPCContext } from "@niceai/trpc";
 import { auth } from "@niceai/auth";
 
 /**

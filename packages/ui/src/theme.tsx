@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import React, { useEffect } from "react";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { ThemeProvider, useTheme } from "next-themes";
 
@@ -13,7 +13,11 @@ import {
 } from "./dropdown-menu";
 
 function ThemeToggle() {
-  const { setTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    document.body.setAttribute('arco-theme', resolvedTheme as string);
+  }, [resolvedTheme])
 
   return (
     <DropdownMenu>

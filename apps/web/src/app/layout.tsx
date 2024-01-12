@@ -13,6 +13,8 @@ import { env } from "~/env";
 import { TRPCReactProvider } from "~/trpc/react";
 
 import "~/app/globals.css";
+import { SessionProvider } from "@niceai/auth/react";
+import { auth } from "@niceai/auth";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -33,7 +35,8 @@ export const viewport: Viewport = {
 
 const getHeaders = cache(async () => headers());
 
-export default function RootLayout(props: { children: React.ReactNode }) {
+export default async function RootLayout(props: { children: React.ReactNode }) {
+  const session = await auth();
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -43,6 +46,8 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           GeistMono.variable,
         )}
       >
+        <SessionProvider session={session}>
+
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TRPCReactProvider headersPromise={getHeaders()}>
             {props.children}
@@ -52,6 +57,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           </div>
           <Toaster />
         </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );
