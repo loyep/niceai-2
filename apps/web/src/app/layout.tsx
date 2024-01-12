@@ -3,6 +3,7 @@ import { cache } from "react";
 import { headers } from "next/headers";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
+import "@arco-themes/react-niceai/css/arco.css";
 
 import { cn } from "@niceai/ui";
 import { ThemeProvider, ThemeToggle } from "@niceai/ui/theme";

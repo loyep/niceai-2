@@ -2,7 +2,6 @@
 
 import type { RouterOutputs } from "@niceai/api";
 import { cn } from "@niceai/ui";
-import { Button } from "@niceai/ui/button";
 import {
   Form,
   FormControl,
@@ -12,7 +11,10 @@ import {
   useForm,
 } from "@niceai/ui/form";
 import { Input } from "@niceai/ui/input";
-import { toast } from "@niceai/ui/toast";
+import {
+  Button,
+  Notification,
+} from "@arco-design/web-react";
 import { CreatePostSchema } from "@niceai/validators";
 
 import { api } from "~/trpc/react";
@@ -33,10 +35,12 @@ export function CreatePostForm() {
       await utils.post.invalidate();
     },
     onError: (err) => {
-      toast.error(
-        err?.data?.code === "UNAUTHORIZED"
+      Notification.error({
+        title: 'Error',
+        content: err?.data?.code === "UNAUTHORIZED"
           ? "You must be logged in to post"
           : "Failed to create post",
+        },
       );
     },
   });
@@ -73,7 +77,7 @@ export function CreatePostForm() {
             </FormItem>
           )}
         />
-        <Button>Create</Button>
+        <Button long>Create</Button>
       </form>
     </Form>
   );
@@ -114,10 +118,12 @@ export function PostCard(props: {
       await utils.post.invalidate();
     },
     onError: (err) => {
-      toast.error(
-        err?.data?.code === "UNAUTHORIZED"
+      Notification.error({
+        title: 'Error',
+        content: err?.data?.code === "UNAUTHORIZED"
           ? "You must be logged in to delete a post"
           : "Failed to delete post",
+        },
       );
     },
   });
@@ -130,8 +136,7 @@ export function PostCard(props: {
       </div>
       <div>
         <Button
-          variant="ghost"
-          className="cursor-pointer text-sm font-bold uppercase text-primary hover:bg-transparent hover:text-white"
+          type='outline'
           onClick={() => deletePost.mutate(props.post.id)}
         >
           Delete
