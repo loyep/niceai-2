@@ -10,6 +10,7 @@
     "./input": "./src/input.tsx",
     "./label": "./src/label.tsx",
     "./theme": "./src/theme.tsx",
+    "./dropdown-menu": "./src/dropdown-menu.tsx",
     "./toast": "./src/toast.tsx"
   },
   "license": "MIT",
