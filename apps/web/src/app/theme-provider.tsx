@@ -279,8 +279,7 @@ const ThemeScript: any = memo(
           .join(",")})`;
 
         //   setAttribute("arco-theme", resolvedTheme as string)
-        console.log('removeClasses', attrs)
-        return `var d=document.documentElement,c=d.classList,a=document.body;${removeClasses};document.body.setAttribute('arco-theme', 'dark');`;
+        return `var d=document.documentElement,c=d.classList,a=document.body;${removeClasses};`;
       } else {
         return `var d=document.documentElement,a=document.body,n='${attribute}',s='setAttribute';`;
       }
@@ -327,7 +326,7 @@ const ThemeScript: any = memo(
         if (literal || resolvedName) {
           text += `c.add(${val});a.setAttribute('arco-theme', ${val})`;
         } else {
-          text += `null`;
+          text += `a.setAttribute('arco-theme', ${val || 'light'})`;
         }
       } else {
         if (resolvedName) {
@@ -335,7 +334,6 @@ const ThemeScript: any = memo(
         }
       }
 
-      console.log('text', text)
       return text
     };
 
