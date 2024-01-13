@@ -8,7 +8,6 @@ import "@arco-themes/react-niceai/css/arco.css";
 
 import { cn } from "@niceai/ui";
 import { ThemeProvider, ThemeToggle } from "@niceai/ui/theme";
-import { Toaster } from "@niceai/ui/toast";
 
 import { env } from "~/env";
 import { TRPCReactProvider } from "~/trpc/react";
@@ -61,7 +60,6 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
             <div className="absolute bottom-4 right-4">
               <ThemeToggle />
             </div>
-            <Toaster />
           </ThemeProvider>
         </SessionProvider>
       </body>

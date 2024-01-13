@@ -12,6 +12,7 @@ const config = {
     "@niceai/auth",
     "@niceai/db",
     "@niceai/ui",
+    "@niceai/trpc",
     "@niceai/validators",
   ],
 

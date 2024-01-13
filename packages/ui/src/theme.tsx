@@ -16,8 +16,8 @@ function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
-    document.body.setAttribute('arco-theme', resolvedTheme as string);
-  }, [resolvedTheme])
+    document.body.setAttribute("arco-theme", resolvedTheme as string);
+  }, [resolvedTheme]);
 
   return (
     <DropdownMenu>

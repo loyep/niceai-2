@@ -1,7 +1,8 @@
-'use client';
+"use client";
+
+import { Button } from "@arco-design/web-react";
 
 import { signIn, signOut, useSession } from "@niceai/auth/react";
-import { Button } from "@arco-design/web-react";
 
 export function AuthShowcase() {
   const session = useSession();
@@ -28,10 +29,6 @@ export function AuthShowcase() {
 
       <form>
         <Button
-          // formAction={async () => {
-          //   "use server";
-          //   await signOut();
-          // }}
           onClick={async () => {
             await signOut();
           }}

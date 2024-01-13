@@ -1,6 +1,8 @@
 "use client";
 
-import type { RouterOutputs } from "@niceai/api";
+import { Button, Input, Notification } from "@arco-design/web-react";
+
+import type { RouterOutputs } from "@niceai/trpc";
 import { cn } from "@niceai/ui";
 import {
   Form,
@@ -10,11 +12,6 @@ import {
   FormMessage,
   useForm,
 } from "@niceai/ui/form";
-import { Input } from "@niceai/ui/input";
-import {
-  Button,
-  Notification,
-} from "@arco-design/web-react";
 import { CreatePostSchema } from "@niceai/validators";
 
 import { api } from "~/trpc/react";
@@ -36,12 +33,12 @@ export function CreatePostForm() {
     },
     onError: (err) => {
       Notification.error({
-        title: 'Error',
-        content: err?.data?.code === "UNAUTHORIZED"
-          ? "You must be logged in to post"
-          : "Failed to create post",
-        },
-      );
+        title: "Error",
+        content:
+          err?.data?.code === "UNAUTHORIZED"
+            ? "You must be logged in to post"
+            : "Failed to create post",
+      });
     },
   });
 
@@ -77,7 +74,9 @@ export function CreatePostForm() {
             </FormItem>
           )}
         />
-        <Button long htmlType="submit" type="primary">Create</Button>
+        <Button long htmlType="submit" type="primary">
+          Create
+        </Button>
       </form>
     </Form>
   );
@@ -119,12 +118,12 @@ export function PostCard(props: {
     },
     onError: (err) => {
       Notification.error({
-        title: 'Error',
-        content: err?.data?.code === "UNAUTHORIZED"
-          ? "You must be logged in to delete a post"
-          : "Failed to delete post",
-        },
-      );
+        title: "Error",
+        content:
+          err?.data?.code === "UNAUTHORIZED"
+            ? "You must be logged in to delete a post"
+            : "Failed to delete post",
+      });
     },
   });
 
@@ -135,10 +134,7 @@ export function PostCard(props: {
         <p className="mt-2 text-sm">{props.post.content}</p>
       </div>
       <div>
-        <Button
-          type='outline'
-          onClick={() => deletePost.mutate(props.post.id)}
-        >
+        <Button type="outline" onClick={() => deletePost.mutate(props.post.id)}>
           Delete
         </Button>
       </div>
