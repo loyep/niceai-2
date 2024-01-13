@@ -1,6 +1,6 @@
 'use client';
 
-import { signIn, useSession } from "@niceai/auth/react";
+import { signIn, signOut, useSession } from "@niceai/auth/react";
 import { Button } from "@arco-design/web-react";
 
 export function AuthShowcase() {
@@ -32,6 +32,9 @@ export function AuthShowcase() {
           //   "use server";
           //   await signOut();
           // }}
+          onClick={async () => {
+            await signOut();
+          }}
         >
           Sign out
         </Button>
