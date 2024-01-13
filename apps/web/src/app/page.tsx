@@ -1,21 +1,22 @@
-import { Suspense } from "react";
+// import { Suspense } from "react";
 
-import { api } from "~/trpc/server";
+// import { api } from "~/trpc/server";
 import { AuthShowcase } from "./_components/auth-showcase";
-import {
-  CreatePostForm,
-  PostCardSkeleton,
-  PostList,
-} from "./_components/posts";
+
+// import {
+//   CreatePostForm,
+//   PostCardSkeleton,
+//   PostList,
+// } from "./_components/posts";
 
 // export const runtime = "edge";
 
-export default async function HomePage() {
+export default function HomePage() {
   // You don't need to fetch these here, just showing different usages
   // If you don't want the Suspense loading state, you could pass these
   // posts as props as use as initialData in the query.
-  const posts = await api.post.all();
-  console.log("RSC Posts:", posts);
+  // const posts = await api.post.all();
+  // console.log("RSC Posts:", posts);
 
   return (
     <main className="container h-screen py-16">
@@ -25,7 +26,7 @@ export default async function HomePage() {
         </h1>
         <AuthShowcase />
 
-        <CreatePostForm />
+        {/* <CreatePostForm />
         <div className="w-full max-w-2xl overflow-y-scroll">
           <Suspense
             fallback={
@@ -38,7 +39,7 @@ export default async function HomePage() {
           >
             <PostList />
           </Suspense>
-        </div>
+        </div> */}
       </div>
     </main>
   );
