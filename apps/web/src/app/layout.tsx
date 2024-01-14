@@ -4,19 +4,16 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
-import { ArcoThemeProvider } from "./theme-provider";
-
 import "@arco-themes/react-niceai/css/arco.css";
-
-import { cn } from "@niceai/ui";
-import { ThemeProvider } from "./theme-provider";
-
-import { env } from "~/env";
-
-import "~/app/globals.css";
 
 import { auth } from "@niceai/auth";
 import { SessionProvider } from "@niceai/auth/react";
+import { cn } from "../components/utils";
+
+import { env } from "~/env";
+import { ArcoThemeProvider, ThemeProvider } from "./theme-provider";
+
+import "~/app/globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -42,7 +39,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <body
         suppressHydrationWarning
         className={cn(
-          "min-h-screen bg-background font-sans text-foreground antialiased",
+          "min-h-screen font-sans antialiased",
           GeistSans.variable,
           GeistMono.variable,
         )}

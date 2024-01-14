@@ -10,16 +10,8 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { ConfigProvider } from "@arco-design/web-react";
+import { Button, ConfigProvider, Dropdown, Menu } from "@arco-design/web-react";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-
-import { Button } from "@niceai/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@niceai/ui/dropdown-menu";
 
 type ValueObject = Record<string, string>;
 
@@ -120,7 +112,7 @@ const Theme: React.FC<ThemeProviderProps> = ({
       const name = value ? value[resolved] : resolved;
       const enable = disableTransitionOnChange ? disableAnimation() : null;
       const d = document.documentElement;
-      const a = document.body
+      const a = document.body;
 
       if (attribute === "class") {
         d.classList.remove(...attrs);
@@ -133,7 +125,7 @@ const Theme: React.FC<ThemeProviderProps> = ({
           d.removeAttribute(attribute);
         }
       }
-      a.setAttribute('arco-theme', name!)
+      a.setAttribute("arco-theme", name!);
 
       if (enableColorScheme) {
         const fallback = colorSchemes.includes(defaultTheme)
@@ -165,7 +157,7 @@ const Theme: React.FC<ThemeProviderProps> = ({
 
       // Save to storage
       try {
-        console.log('1111111', newTheme)
+        console.log("1111111", newTheme);
         localStorage.setItem(storageKey, newTheme);
       } catch (e) {
         // Unsupported
@@ -278,7 +270,6 @@ const ThemeScript: any = memo(
           .map((t: string) => `'${t}'`)
           .join(",")})`;
 
-        //   setAttribute("arco-theme", resolvedTheme as string)
         return `var d=document.documentElement,c=d.classList,a=document.body;${removeClasses};`;
       } else {
         return `var d=document.documentElement,a=document.body,n='${attribute}',s='setAttribute';`;
@@ -326,7 +317,7 @@ const ThemeScript: any = memo(
         if (literal || resolvedName) {
           text += `c.add(${val});a.setAttribute('arco-theme', ${val})`;
         } else {
-          text += `a.setAttribute('arco-theme', ${val || 'light'})`;
+          text += `a.setAttribute('arco-theme', ${val || "light"})`;
         }
       } else {
         if (resolvedName) {
@@ -334,7 +325,7 @@ const ThemeScript: any = memo(
         }
       }
 
-      return text
+      return text;
     };
 
     const scriptSrc = (() => {
@@ -409,77 +400,28 @@ const getSystemTheme = (e?: MediaQueryList | MediaQueryListEvent) => {
   const systemTheme = isDark ? "dark" : "light";
   return systemTheme;
 };
-// import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-// import { ThemeProvider, useTheme } from "next-themes";
-
-// import { Button } from "./button";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuTrigger,
-// } from "./dropdown-menu";
-
-// function ThemeToggle() {
-//   const { setTheme, resolvedTheme } = useTheme();
-
-//   useEffect(() => {
-//     document.body.setAttribute("arco-theme", resolvedTheme as string);
-//   }, [resolvedTheme]);
-
-//   return (
-//     <DropdownMenu>
-//       <DropdownMenuTrigger asChild>
-//         <Button variant="outline" size="icon">
-//           <SunIcon className="size-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-//           <MoonIcon className="absolute size-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-//           <span className="sr-only">Toggle theme</span>
-//         </Button>
-//       </DropdownMenuTrigger>
-//       <DropdownMenuContent align="end">
-//         <DropdownMenuItem onClick={() => setTheme("light")}>
-//           Light
-//         </DropdownMenuItem>
-//         <DropdownMenuItem onClick={() => setTheme("dark")}>
-//           Dark
-//         </DropdownMenuItem>
-//         <DropdownMenuItem onClick={() => setTheme("system")}>
-//           System
-//         </DropdownMenuItem>
-//       </DropdownMenuContent>
-//     </DropdownMenu>
-//   );
-// }
-
-// export { ThemeProvider, ThemeToggle };
 
 export function ArcoThemeProvider({ children }: { children: React.ReactNode }) {
   const { setTheme } = useTheme();
+
+  const dropList = (
+    <Menu onClickMenuItem={(key) => setTheme(key)}>
+      <Menu.Item key="light">Light</Menu.Item>
+      <Menu.Item key="dark">Dark</Menu.Item>
+      <Menu.Item key="system">System</Menu.Item>
+    </Menu>
+  );
 
   return (
     <>
       <ConfigProvider>{children}</ConfigProvider>
       <div className="absolute bottom-4 right-4">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="icon">
-              <SunIcon className="size-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <MoonIcon className="absolute size-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => setTheme("light")}>
-              Light
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setTheme("dark")}>
-              Dark
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setTheme("system")}>
-              System
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <Dropdown droplist={dropList} position="bl" trigger="click">
+          <Button type="text">
+            <SunIcon className="block dark:hidden" />
+            <MoonIcon className="hidden dark:block" />
+          </Button>
+        </Dropdown>
       </div>
     </>
   );
