@@ -8,9 +8,9 @@ import "@arco-themes/react-niceai/css/arco.css";
 
 import { auth } from "@niceai/auth";
 import { SessionProvider } from "@niceai/auth/react";
-import { cn } from "../components/utils";
 
 import { env } from "~/env";
+import { cn } from "../components/utils";
 import { ArcoThemeProvider, ThemeProvider } from "./theme-provider";
 
 import "~/app/globals.css";
