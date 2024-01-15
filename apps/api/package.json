@@ -16,7 +16,7 @@
   "dependencies": {
     "@niceai/auth": "workspace:^0.1.0",
     "@niceai/db": "workspace:^0.1.0",
-    "hono": "^3.12.3",
+    "hono": "^3.12.4",
     "uuid": "^9.0.1",
     "zod": "^3.22.4"
   },
