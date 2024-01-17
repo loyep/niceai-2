@@ -1,7 +1,9 @@
 import { Hono } from "hono";
 import { compress } from "hono/compress";
 import { cors } from "hono/cors";
+import { HTTPException } from "hono/http-exception";
 import { logger } from "hono/logger";
+import { prettyJSON } from "hono/pretty-json";
 import { timing } from "hono/timing";
 import { v4 as uuidv4 } from "uuid";
 
@@ -15,7 +17,28 @@ export function createApp({ prefix = "/" }: { prefix?: string } = {}): Hono {
     await next();
   });
 
+  /**
+   * Default route when no other route matches.
+   * Returns a JSON response with a message and status code 404.
+   */
+  app.notFound((c) => c.json({ message: "Not Found", ok: false }, 404));
+
+  /**
+   * Global error handler.
+   * If error is instance of HTTPException, returns the custom response.
+   * Otherwise, logs the error and returns a JSON response with status code 500.
+   */
+  app.onError((err, c) => {
+    if (err instanceof HTTPException) {
+      return err.getResponse();
+    }
+    c.status(500);
+    return c.json({ status: "failure", message: err.message });
+  });
+
   app.use("*", cors(), compress(), timing(), logger());
+  // Use prettyJSON middleware for all routes
+  app.use("*", prettyJSON());
 
   app.get("/", (c) => {
     const traceId = (c.req as unknown as Record<string, string>)["trace-id"];

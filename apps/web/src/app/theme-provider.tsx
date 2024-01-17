@@ -157,7 +157,6 @@ const Theme: React.FC<ThemeProviderProps> = ({
 
       // Save to storage
       try {
-        console.log("1111111", newTheme);
         localStorage.setItem(storageKey, newTheme);
       } catch (e) {
         // Unsupported

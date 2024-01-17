@@ -9,11 +9,11 @@ import "@arco-themes/react-niceai/css/arco.css";
 import { auth } from "@niceai/auth";
 import { SessionProvider } from "@niceai/auth/react";
 
-import { env } from "~/env";
 import { cn } from "../components/utils";
+import { env } from "../env";
 import { ArcoThemeProvider, ThemeProvider } from "./theme-provider";
 
-import "~/app/globals.css";
+import "../styles/globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -51,12 +51,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
             enableSystem
             disableTransitionOnChange
           >
-            <ArcoThemeProvider>
-              {props.children}
-              {/* <div className="absolute bottom-4 right-4">
-                <ThemeToggle />
-              </div> */}
-            </ArcoThemeProvider>
+            <ArcoThemeProvider>{props.children}</ArcoThemeProvider>
           </ThemeProvider>
         </SessionProvider>
         <SpeedInsights />
