@@ -2,7 +2,7 @@
   "name": "niceai-dev",
   "private": true,
   "engines": {
-    "node": ">=18.19"
+    "node": ">18.0.0"
   },
   "packageManager": "pnpm@8.14.1",
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@niceai/prettier-config": "workspace:^0.1.0",
-    "prettier": "^3.2.2",
+    "prettier": "^3.2.3",
     "sherif": "^0.7.0",
     "turbo": "^1.11.3",
     "typescript": "^5.3.3"
