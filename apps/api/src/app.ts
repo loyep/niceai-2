@@ -7,6 +7,7 @@ import { prettyJSON } from "hono/pretty-json";
 import { timing } from "hono/timing";
 import { v4 as uuidv4 } from "uuid";
 
+import openai from "./router/openai";
 import posts from "./router/posts";
 import users from "./router/users";
 
@@ -50,6 +51,7 @@ export function createApp({ prefix = "/" }: { prefix?: string } = {}): Hono {
 
   app.route("/users", users);
   app.route("/posts", posts);
+  app.route("/openai", openai);
 
   return app;
 }
