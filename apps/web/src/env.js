@@ -22,7 +22,7 @@ export const env = createEnv({
     // DB_NAME: z.string(),
     // DB_PASSWORD: z.string(),
     // DB_USERNAME: z.string(),
-    DATABASE_URL: z.string(),
+    DATABASE_URL: z.string().url(),
   },
   /**
    * Specify your client-side environment variables schema here.

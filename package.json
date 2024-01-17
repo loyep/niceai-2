@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@niceai/prettier-config": "workspace:^0.1.0",
-    "prettier": "^3.2.3",
+    "prettier": "^3.2.4",
     "sherif": "^0.7.0",
     "turbo": "^1.11.3",
     "typescript": "^5.3.3"

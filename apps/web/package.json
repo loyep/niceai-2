@@ -17,6 +17,7 @@
     "@arco-design/web-react": "^2.58.3",
     "@arco-themes/react-niceai": "^0.0.1",
     "@niceai/api": "workspace:^0.1.0",
+    "@niceai/api2": "workspace:^0.1.0",
     "@niceai/auth": "workspace:^0.1.0",
     "@niceai/db": "workspace:^0.1.0",
     "@niceai/trpc": "workspace:^0.1.0",
@@ -50,7 +51,7 @@
     "@types/react-dom": "^18.2.18",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.56.0",
-    "prettier": "^3.2.3",
+    "prettier": "^3.2.4",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   },

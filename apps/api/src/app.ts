@@ -1,4 +1,4 @@
-import { Hono } from "hono";
+import { OpenAPIHono } from "@hono/zod-openapi";
 import { compress } from "hono/compress";
 import { cors } from "hono/cors";
 import { HTTPException } from "hono/http-exception";
@@ -6,17 +6,20 @@ import { logger } from "hono/logger";
 import { prettyJSON } from "hono/pretty-json";
 import { timing } from "hono/timing";
 import { v4 as uuidv4 } from "uuid";
+import { swaggerUI } from '@hono/swagger-ui'
 
 import openai from "./router/openai";
 import posts from "./router/posts";
 import users from "./router/users";
 
-export function createApp({ prefix = "/" }: { prefix?: string } = {}): Hono {
-  const app = new Hono().basePath(prefix);
+export function createApp({ prefix = "/" }: { prefix?: string } = {}): OpenAPIHono {
+  const app = new OpenAPIHono().basePath(prefix);
   app.use("*", async (c, next) => {
     (c.req as unknown as Record<string, unknown>)["trace-id"] = uuidv4();
     await next();
   });
+
+  app.get('/swagger', swaggerUI({ url: '/api/v1/swagger.json' }))
 
   /**
    * Default route when no other route matches.
@@ -53,5 +56,12 @@ export function createApp({ prefix = "/" }: { prefix?: string } = {}): Hono {
   app.route("/posts", posts);
   app.route("/openai", openai);
 
+app.doc('/swagger.json', {
+  info: {
+    title: 'An API',
+    version: 'v1'
+  },
+  openapi: '3.1.0',
+})
   return app;
 }
