@@ -16,7 +16,6 @@ export const postRouter = createTRPCRouter({
   byId: publicProcedure
     .input(z.object({ id: z.number() }))
     .query(({ ctx, input }) => {
-
       return ctx.db.query.post.findFirst({
         where: eq(schema.post.id, input.id),
       });

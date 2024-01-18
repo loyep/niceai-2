@@ -1,15 +1,15 @@
-import { Elysia, t } from 'elysia'
+import { swagger } from "@elysiajs/swagger";
+import { Elysia, t } from "elysia";
+
 import openai from "./router/openai";
 import posts from "./router/posts";
 import users from "./router/users";
 
-import { swagger } from '@elysiajs/swagger'
-
 export function createApp({ prefix = "/" }: { prefix?: string } = {}) {
-  const app = new Elysia({ 
+  const app = new Elysia({
     prefix,
-  })
-  app.use(swagger())
+  });
+  app.use(swagger());
 
   app.use(users({ prefix: "/users" }));
   app.use(posts({ prefix: "/posts" }));
