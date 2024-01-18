@@ -15,5 +15,7 @@ export const config = {
   ],
 };
 
-export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
-}
+export default async function middleware(
+  req: NextRequest,
+  ev: NextFetchEvent,
+) {}

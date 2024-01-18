@@ -54,8 +54,12 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
             <ArcoThemeProvider>{props.children}</ArcoThemeProvider>
           </ThemeProvider>
         </SessionProvider>
-        <SpeedInsights />
-        <Analytics />
+        {env.NODE_ENV === "production" && (
+          <>
+            <SpeedInsights />
+            <Analytics />
+          </>
+        )}
       </body>
     </html>
   );
