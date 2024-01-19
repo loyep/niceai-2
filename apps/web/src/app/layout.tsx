@@ -18,7 +18,7 @@ import "../styles/globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(
     env.VERCEL_ENV === "production"
-      ? "https://niceai.dev"
+      ? "https://niceai.io"
       : "http://localhost:3000",
   ),
   title: "Nice AI",
