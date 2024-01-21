@@ -16,7 +16,7 @@ export function createApp({
 }: { prefix?: string } = {}): OpenAPIHono {
   const app = new OpenAPIHono().basePath(prefix);
 
-  app.get("open-api", swaggerUI({ url: `${prefix}/open-api/doc` }));
+  app.get("swagger", swaggerUI({ url: `${prefix}/swagger/openapi` }));
 
   /**
    * Default route when no other route matches.
@@ -74,7 +74,7 @@ export function createApp({
   app.route("/posts", posts);
   app.route("/openai", openai);
 
-  app.doc31("open-api/doc", (c) => {
+  app.doc31("swagger/openapi", (c) => {
     const url = new URL(c.req.url);
     url.pathname = prefix;
     return {
