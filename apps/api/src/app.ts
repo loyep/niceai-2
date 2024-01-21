@@ -16,7 +16,7 @@ export function createApp({
 }: { prefix?: string } = {}): OpenAPIHono {
   const app = new OpenAPIHono().basePath(prefix);
 
-  app.get("swagger", swaggerUI({ url: `${prefix}/swagger/openapi` }));
+  app.get("swagger/ui", swaggerUI({ url: `${prefix}/swagger/doc` }));
 
   /**
    * Default route when no other route matches.
@@ -74,7 +74,14 @@ export function createApp({
   app.route("/posts", posts);
   app.route("/openai", openai);
 
-  app.doc31("swagger/openapi", (c) => {
+  app.use('/swagger/*', async (c, next) => {
+    if (process.env.NODE_ENV === "production") {
+      throw new HTTPException(404, { message: "404 Not Found" });
+    }
+    await next();
+  })
+
+  app.doc31("swagger/doc", (c) => {
     const url = new URL(c.req.url);
     url.pathname = prefix;
     return {
