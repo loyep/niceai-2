@@ -74,6 +74,9 @@ importers:
       "@niceai/tsconfig":
         specifier: workspace:^0.1.0
         version: link:../../tooling/tsconfig
+      "@types/lodash":
+        specifier: ^4.14.172
+        version: 4.14.202
       "@types/uuid":
         specifier: ^9.0.7
         version: 9.0.7
@@ -104,6 +107,9 @@ importers:
       "@sinclair/typebox":
         specifier: ^0.32.10
         version: 0.32.10
+      bun:
+        specifier: ^1.0.24
+        version: 1.0.24
       elysia:
         specifier: ^0.8.9
         version: 0.8.9(@sinclair/typebox@0.32.10)(typescript@5.3.3)
@@ -204,6 +210,9 @@ importers:
       "@vercel/analytics":
         specifier: ^1.1.2
         version: 1.1.2
+      "@vercel/edge-config":
+        specifier: ^0.4.1
+        version: 0.4.1
       "@vercel/speed-insights":
         specifier: ^1.0.5
         version: 1.0.5(react-dom@18.2.0)(typescript@5.3.3)(vite@4.5.1)
@@ -2224,6 +2233,72 @@ packages:
       "@nodelib/fs.scandir": 2.1.5
       fastq: 1.15.0
 
+  /@oven/bun-darwin-aarch64@1.0.24:
+    resolution:
+      {
+        integrity: sha512-Vg2sLbVsBPZWKwhDvZUQlclGK7YpJYqCroM5c3jHvZDouuKwm0IXIKTNmfOQGQkbevJkQJzoNUnsNg8bwFNcMg==,
+      }
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@oven/bun-darwin-x64-baseline@1.0.24:
+    resolution:
+      {
+        integrity: sha512-7VSsFYoqc1A8axS7deETsYXCSGi9HLZgaM+7zGuoKYyMGzpxrxkf2q7PBFnPlvvjcT7sCHriOB79VKTr+aHKcg==,
+      }
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@oven/bun-darwin-x64@1.0.24:
+    resolution:
+      {
+        integrity: sha512-r718f9kzJKeJhhNlK3CBjPjh9xzImvF2UizD1P+HxRh3qT8mqmsF+rdFb0o5fqJP0V3VUUSq1zrGZ+RZfZ701g==,
+      }
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@oven/bun-linux-aarch64@1.0.24:
+    resolution:
+      {
+        integrity: sha512-yz+fDGDvfjq8QnAWc2zSkB6xdc9Pez2kMLLMVYB4uDxG7ZM5k0ClvubFPyFoPBzue+/Tt0qYbrN61u5oTDA5sQ==,
+      }
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@oven/bun-linux-x64-baseline@1.0.24:
+    resolution:
+      {
+        integrity: sha512-rixKQfzx0j5JoCJe5HDvFcRv24ad2IPHB0YKXnYVhUQIJ0yf25y2ofiT42Nus5JE6r91bLTXyLyWlSFGaXaebQ==,
+      }
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@oven/bun-linux-x64@1.0.24:
+    resolution:
+      {
+        integrity: sha512-2TtGHxNCMATJMdtDNbQ1jCwAO5QrCiCrkDXzG2xm8aYf8RWm2WREg0kY1ovvOz5JLYvmrSx1RQxum9W/u+Q8Bg==,
+      }
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
   /@panva/hkdf@1.1.1:
     resolution:
       {
@@ -2545,6 +2620,13 @@ packages:
       }
     dev: false
 
+  /@types/lodash@4.14.202:
+    resolution:
+      {
+        integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==,
+      }
+    dev: true
+
   /@types/node-fetch@2.6.11:
     resolution:
       {
@@ -2783,6 +2865,23 @@ packages:
       }
     dependencies:
       server-only: 0.0.1
+    dev: false
+
+  /@vercel/edge-config-fs@0.1.0:
+    resolution:
+      {
+        integrity: sha512-NRIBwfcS0bUoUbRWlNGetqjvLSwgYH/BqKqDN7vK1g32p7dN96k0712COgaz6VFizAm9b0g6IG6hR6+hc0KCPg==,
+      }
+    dev: false
+
+  /@vercel/edge-config@0.4.1:
+    resolution:
+      {
+        integrity: sha512-4Mc3H7lE+x4RrL17nY8CWeEorvJHbkNbQTy9p8H1tO7y11WeKj5xeZSr07wNgfWInKXDUwj5FZ3qd/jIzjPxug==,
+      }
+    engines: { node: ">=14.6" }
+    dependencies:
+      "@vercel/edge-config-fs": 0.1.0
     dev: false
 
   /@vercel/speed-insights@1.0.5(react-dom@18.2.0)(typescript@5.3.3)(vite@4.5.1):
@@ -3355,6 +3454,24 @@ packages:
         integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==,
       }
     dev: true
+
+  /bun@1.0.24:
+    resolution:
+      {
+        integrity: sha512-nbjulEGanq5q6F4KsB5SFQJgB79ccrOkQoo/n28kZQCRA7F7fydIUUA3Ib62yT+NYw5rVcMTAEMkVX7IdU3yfQ==,
+      }
+    cpu: [arm64, x64]
+    os: [darwin, linux]
+    hasBin: true
+    requiresBuild: true
+    optionalDependencies:
+      "@oven/bun-darwin-aarch64": 1.0.24
+      "@oven/bun-darwin-x64": 1.0.24
+      "@oven/bun-darwin-x64-baseline": 1.0.24
+      "@oven/bun-linux-aarch64": 1.0.24
+      "@oven/bun-linux-x64": 1.0.24
+      "@oven/bun-linux-x64-baseline": 1.0.24
+    dev: false
 
   /busboy@1.6.0:
     resolution:

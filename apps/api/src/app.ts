@@ -1,27 +1,22 @@
 import { swaggerUI } from "@hono/swagger-ui";
-import { OpenAPIHono } from "@hono/zod-openapi";
+import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
 import { compress } from "hono/compress";
 import { cors } from "hono/cors";
 import { HTTPException } from "hono/http-exception";
 import { logger } from "hono/logger";
 import { prettyJSON } from "hono/pretty-json";
 import { timing } from "hono/timing";
-import { v4 as uuidv4 } from "uuid";
 
-import openai from "./router/openai";
-import posts from "./router/posts";
-import users from "./router/users";
+import openai from "./routes/openai";
+import posts from "./routes/posts";
+import users from "./routes/users";
 
 export function createApp({
   prefix = "/",
 }: { prefix?: string } = {}): OpenAPIHono {
   const app = new OpenAPIHono().basePath(prefix);
-  app.use("*", async (c, next) => {
-    (c.req as unknown as Record<string, unknown>)["trace-id"] = uuidv4();
-    await next();
-  });
 
-  app.get("/swagger", swaggerUI({ url: "/api/v1/swagger.json" }));
+  app.get("open-api", swaggerUI({ url: `${prefix}/open-api/doc` }));
 
   /**
    * Default route when no other route matches.
@@ -46,24 +41,73 @@ export function createApp({
   // Use prettyJSON middleware for all routes
   app.use("*", prettyJSON());
 
-  app.get("/", (c) => {
-    const traceId = (c.req as unknown as Record<string, string>)["trace-id"];
-    console.log(`traceId: ${traceId}`);
-    return c.json({
-      message: "hello nice ai.",
-    });
-  });
+  app.openapi(
+    createRoute({
+      path: "/",
+      method: "get",
+      responses: {
+        200: {
+          description: "Respond a message",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  message: {
+                    type: "string",
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    (c) => {
+      return c.json({
+        message: "hello nice ai.",
+      });
+    },
+  );
 
   app.route("/users", users);
   app.route("/posts", posts);
   app.route("/openai", openai);
 
-  app.doc("/swagger.json", {
-    info: {
-      title: "An API",
-      version: "v1",
-    },
-    openapi: "3.1.0",
+  app.doc31("open-api/doc", (c) => {
+    const url = new URL(c.req.url);
+    url.pathname = prefix;
+    return {
+      info: {
+        title: "Nice AI API",
+        version: "v1",
+      },
+      openapi: "3.1.0",
+      servers: [
+        {
+          url: url.toString(),
+          description: "Nice Ai API.",
+        },
+      ],
+      tags: [
+        {
+          name: "default",
+          description: "Default",
+        },
+        {
+          name: "users",
+          description: "Users",
+        },
+        {
+          name: "posts",
+          description: "Posts",
+        },
+        {
+          name: "openai",
+          description: "OpenAI",
+        },
+      ],
+    };
   });
   return app;
 }

@@ -25,6 +25,7 @@ route.openapi(
         },
       },
     },
+    tags: ["openai"],
   }),
   async (c) => {
     const posts = await db.query.post.findMany();

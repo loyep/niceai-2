@@ -2,9 +2,9 @@ import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
 
 import { db } from "@niceai/db";
 
-const route = new OpenAPIHono();
+const router = new OpenAPIHono();
 
-route.openapi(
+router.openapi(
   createRoute({
     method: "get",
     path: "/",
@@ -25,6 +25,7 @@ route.openapi(
         },
       },
     },
+    tags: ["users"],
   }),
   async (c) => {
     const users = await db.query.users.findMany();
@@ -34,4 +35,4 @@ route.openapi(
   },
 );
 
-export default route;
+export default router;
