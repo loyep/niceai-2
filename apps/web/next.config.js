@@ -9,7 +9,6 @@ const config = {
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
     "@niceai/api",
-    "@niceai/api2",
     "@niceai/auth",
     "@niceai/db",
     "@niceai/trpc",

@@ -17,7 +17,6 @@
     "@arco-design/web-react": "^2.58.3",
     "@arco-themes/react-niceai": "^0.0.1",
     "@niceai/api": "workspace:^0.1.0",
-    "@niceai/api2": "workspace:^0.1.0",
     "@niceai/auth": "workspace:^0.1.0",
     "@niceai/db": "workspace:^0.1.0",
     "@niceai/trpc": "workspace:^0.1.0",
