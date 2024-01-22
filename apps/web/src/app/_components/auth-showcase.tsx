@@ -24,7 +24,7 @@ export function AuthShowcase() {
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <p className="text-center text-2xl">
-        {session.data && <span>Logged in as {session.data.user.name}</span>}
+        {session.data?.user && <span>Logged in as {session.data.user.name}</span>}
       </p>
 
       <form>

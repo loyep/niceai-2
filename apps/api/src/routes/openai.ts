@@ -4,6 +4,8 @@ import { db } from "@niceai/db";
 
 const route = new OpenAPIHono();
 
+const tags = ["Open AI"];
+
 route.openapi(
   createRoute({
     method: "get",
@@ -25,7 +27,7 @@ route.openapi(
         },
       },
     },
-    tags: ["openai"],
+    tags,
   }),
   async (c) => {
     const posts = await db.query.post.findMany();

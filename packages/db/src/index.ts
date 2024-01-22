@@ -7,6 +7,7 @@ export const schema = { ...auth, ...post };
 export { mySqlTable as tableCreator } from "./schema/_table";
 
 export * from "drizzle-orm";
+export * from "drizzle-zod";
 
 export const db = createDB({
   schema,

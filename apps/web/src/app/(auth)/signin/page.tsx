@@ -11,7 +11,9 @@ export default function SignInPage() {
       <Button
         type="primary"
         onClick={async () => {
-          await signIn("github");
+          await signIn("github", {
+            callbackUrl: "/",
+          });
         }}
       >
         Sign in

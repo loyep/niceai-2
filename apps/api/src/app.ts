@@ -16,7 +16,7 @@ export function createApp({
 }: { prefix?: string } = {}): OpenAPIHono {
   const app = new OpenAPIHono().basePath(prefix);
 
-  app.get("swagger/ui", swaggerUI({ url: `${prefix}/swagger/doc` }));
+  app.get("swagger", swaggerUI({ url: `${prefix}/openapi` }));
 
   /**
    * Default route when no other route matches.
@@ -37,9 +37,7 @@ export function createApp({
     return c.json({ status: "failure", message: err.message });
   });
 
-  app.use("*", cors(), compress(), timing(), logger());
-  // Use prettyJSON middleware for all routes
-  app.use("*", prettyJSON());
+  app.use("*", cors(), compress(), timing(), logger(), prettyJSON());
 
   app.openapi(
     createRoute({
@@ -62,6 +60,7 @@ export function createApp({
           },
         },
       },
+      tags: ["Default"],
     }),
     (c) => {
       return c.json({
@@ -74,14 +73,7 @@ export function createApp({
   app.route("/posts", posts);
   app.route("/openai", openai);
 
-  app.use('/swagger/*', async (c, next) => {
-    if (process.env.NODE_ENV === "production") {
-      throw new HTTPException(404, { message: "404 Not Found" });
-    }
-    await next();
-  })
-
-  app.doc31("swagger/doc", (c) => {
+  app.doc31("openapi", (c) => {
     const url = new URL(c.req.url);
     url.pathname = prefix;
     return {
@@ -98,19 +90,19 @@ export function createApp({
       ],
       tags: [
         {
-          name: "default",
+          name: "Default",
           description: "Default",
         },
         {
-          name: "users",
+          name: "Users",
           description: "Users",
         },
         {
-          name: "posts",
+          name: "Posts",
           description: "Posts",
         },
         {
-          name: "openai",
+          name: "Openai",
           description: "OpenAI",
         },
       ],

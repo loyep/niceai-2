@@ -39,7 +39,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <body
         suppressHydrationWarning
         className={cn(
-          "min-h-screen font-sans antialiased",
+          "font-sans antialiased",
           GeistSans.variable,
           GeistMono.variable,
         )}

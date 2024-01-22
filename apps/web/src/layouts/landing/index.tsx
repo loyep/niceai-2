@@ -5,11 +5,11 @@ import { Layout } from "@arco-design/web-react";
 import Footer from "./components/footer";
 import Header from "./components/header";
 
-interface AdminLayoutProps {}
+interface LandingLayoutProps {}
 
-export default function AdminLayout({
+export default function LandingLayout({
   children,
-}: React.PropsWithChildren<AdminLayoutProps>) {
+}: React.PropsWithChildren<LandingLayoutProps>) {
   return (
     <Layout className="min-h-screen">
       <Header />
