@@ -1,11 +1,11 @@
 {
-  "github": {
-    "silent": true
-  },
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/docs/:path*",
-      "destination": "https://niceai-docs.vercel.app/:path*"
+      "source": "/docs/:match*",
+      "destination": "https://niceai-docs.vercel.app/:match*"
     }
   ]
 }
