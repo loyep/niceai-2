@@ -1,0 +1,11 @@
+{
+  "github": {
+    "silent": true
+  },
+  "rewrites": [
+    {
+      "source": "/docs/:path*",
+      "destination": "https://niceai-docs.vercel.app/:path*"
+    }
+  ]
+}
