@@ -1,11 +1,14 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    {
-      "source": "/docs/:match*",
-      "destination": "https://niceai-docs.vercel.app/:match*"
-    }
-  ]
-}
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "rewrites": [
+      {
+        "source": "/docs",
+        "destination": "https://docs.niceai.io/docs"
+      },
+      {
+        "source": "/docs/:path*",
+        "destination": "https://docs.niceai.io/docs/:path*"
+      }
+    ]
+  }
+  

@@ -25,7 +25,7 @@
     "@niceai/prettier-config": "workspace:^0.1.0",
     "@niceai/tailwind-config": "workspace:^0.1.0",
     "@niceai/tsconfig": "workspace:^0.1.0",
-    "@types/node": "^18.19.8",
+    "@types/node": "^18.19.9",
     "typescript": "^5.3.3"
   },
   "eslintConfig": {
